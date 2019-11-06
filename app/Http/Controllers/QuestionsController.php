@@ -65,9 +65,10 @@ class QuestionsController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)
+    public function edit(Question $question)  // ถ้าเรียกแบบแรก parameter เป็น $id 
     {
-        //
+        // $question = Question::findOrFail($id); // แบบแรก เรียกแบบนี้ก็ได้
+        return view('questions.edit',compact('question'));  // เรียกโดยใช้ model ที่สร้างขึ้น
     }
 
     /**
@@ -77,9 +78,12 @@ class QuestionsController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Question $question)
+    public function update(AskQuestionRequest $request, Question $question)
     {
-        //
+        $question->update( $request->only('title','body') );
+
+        return redirect('/questions')->with('success',"Your question has been updated. ");
+
     }
 
     /**
