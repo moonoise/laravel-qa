@@ -11,6 +11,14 @@ use App\Http\Requests\AskQuestionRequest;
 class QuestionsController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct() {  // _ _ 2 ครั้ง
+        $this->middleware('auth',['except' => ['index','show'] ]);
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -57,7 +65,7 @@ class QuestionsController extends Controller
     public function show(Question $question)
     {
         // dd('question');
-        $question->increment('views');
+        $question->increment('views');  // ทุกครั้งที่เปิดดู จะนับจำนวน views ด้วยคำสั่งนี้
         return view('questions.show', compact('question'));
     }
 
@@ -69,6 +77,7 @@ class QuestionsController extends Controller
      */
     public function edit(Question $question)  // ถ้าเรียกแบบแรก parameter เป็น $id 
     {
+        $this->authorize('update',$question);
         // $question = Question::findOrFail($id); // แบบแรก เรียกแบบนี้ก็ได้
         return view('questions.edit',compact('question'));  // เรียกโดยใช้ model ที่สร้างขึ้น
     }
@@ -82,6 +91,7 @@ class QuestionsController extends Controller
      */
     public function update(AskQuestionRequest $request, Question $question)
     {
+        $this->authorize('update',$question);
         $question->update( $request->only('title','body') );
 
         return redirect('/questions')->with('success',"Your question has been updated. ");
@@ -96,6 +106,7 @@ class QuestionsController extends Controller
      */
     public function destroy(Question $question)
     {
+        $this->authorize('delete',$question);
         $question->delete();
         return redirect('/questions')->with('success',"Your Question has been deleted. ");
     }
