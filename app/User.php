@@ -34,7 +34,11 @@ class User extends Authenticatable
 
     public function getCreatedDateAttribute() {
         return "#";
-    } 
+    }
+    
+    public function answers() {
+        return $this->hasMany(Answer::class);
+    }
 
     /**
      * The attributes that should be cast to native types.
