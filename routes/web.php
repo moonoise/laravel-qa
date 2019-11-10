@@ -26,3 +26,6 @@ Route::resource('questions','QuestionsController')->except('show');
 Route::resource('questions.answers','AnswersController')->except(['index','create','show']);
 
 Route::get('/questions/{slug}' , 'QuestionsController@show')->name('questions.show');  // name() น่าจะเป็น view ที่ต้องการให้โชว์
+
+Route::post('/answers/{answer}/accept','AcceptAnswerController')->name('answers.accept');  // ต้องสร้าง AcceptAnswerController ### php artisan make:controller AcceptAnswerController ## ก่อนทำการเขียน route 
+
