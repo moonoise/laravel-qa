@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
@@ -46,6 +47,9 @@ class User extends Authenticatable
 
          return "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?s=" . $size;
 
+    }
+    public function fovorites() {
+        return $this->belongsToMany(Question::class,'favorites')->withTimestamps(); //,'author_id','question_id'
     }
 
     /**
