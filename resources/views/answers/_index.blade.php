@@ -13,12 +13,12 @@
                                     <a title="This answer is useful" class="vote-up">
                                         <i class="fas fa-caret-up fa-2x"></i>
                                     </a>
-                                    <span class="votes-count">1230</span>
+                                    <span class="votes-count">{{ $answer->votes_count }}</span>
                                     <a title="This answer is not useful" class="vote-down off ">
                                             <i class="fas fa-caret-down fa-2x"></i>
                                     </a>
                                     @can('accept', $answer)
-                                        <a title="mark this answer as best answer" 
+                                        <a title="mark this answer as best answer" u
                                         class="{{ $answer->status }} mt-2 "
                                         onclick="event.preventDefault(); document.getElementById('accept-answer-{{ $answer->id}}').submit();"
                                                 >
