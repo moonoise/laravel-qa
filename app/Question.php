@@ -18,7 +18,12 @@ class Question extends Model
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str_slug($value);
     }
- 
+    
+    // public function setBodyAttribute($value)
+    // {
+    //     $this->attributes['body'] = clean($value);
+    // }
+
     public function getUrlAttribute() {
         return route('questions.show', $this->slug);
     }
@@ -38,7 +43,7 @@ class Question extends Model
     }
 
     public function getBodyHtmlAttribute() {
-        return $this->bodyHtml();
+        return clean($this->bodyHtml());
     }
 
     public function answers() {
