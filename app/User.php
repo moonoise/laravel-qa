@@ -33,7 +33,7 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
-    public function getCreatedDateAttribute() {
+    public function getUrlAttribute() {
         return "#";
     }
     
