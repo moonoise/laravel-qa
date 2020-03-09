@@ -12,12 +12,12 @@
                         <a href="{{ route('questions.create') }}" class="btn btn-outline-secondary"> Ask Question </a>
                         </div>
                     </div>
-                   
+
                 </div>
 
                 <div class="card-body">
                     @include('layouts._messages')
-                    @foreach ($questions as $question)
+                    @forelse ($questions as $question)
                         <div class="media">
                             <div class="d-flex flex-column counters">
                                 <div class="vote">
@@ -44,7 +44,7 @@
                                             <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure ?')">Delete</button>
                                         </form>
                                     @endcan
-                                    
+
                                 </div>
                                 </div>
                                 <p class="lead">
@@ -52,15 +52,20 @@
                                     <a href="{{ $question->user->url }}">{{ $question->user->name }}</a>
                                     <small class="text-muted">{{ $question->created_date}}</small>
                                 </p>
-                               
-                                <div class="excerpt">{{ $question->excerpt(350) }}</div> 
+
+                                <div class="excerpt">{{ $question->excerpt(350) }}</div>
                             </div>
                         </div>
-                    @endforeach
+                        <hr>
+                    @empty
+                        <div class="alert alert-warning">
+                            <strong>Sorry</strong>There are no questions available .
+                        </div>
+                    @endforelse
                     <div class="mx-auto">
                         {{ $questions->links() }}
                     </div>
-                    
+
                 </div>
             </div>
         </div>

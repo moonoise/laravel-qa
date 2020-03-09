@@ -9,16 +9,16 @@ class Question extends Model
     use VotableTrait;
 
     protected $fillable = ['title','body'];
-    
+
     public function user() {
         return $this->belongsTo(User::class);
     }
-    
+
     public function setTitleAttribute($value) {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = str_slug($value);
     }
-    
+
     // public function setBodyAttribute($value)
     // {
     //     $this->attributes['body'] = clean($value);
@@ -47,7 +47,7 @@ class Question extends Model
     }
 
     public function answers() {
-        return $this->hasMany(Answer::class);
+        return $this->hasMany(Answer::class)->orderBy('votes_count','DESC');  // เรียงคำตอบ ใส่ตรงนี้ก็ได้ หรือใสที่  RouteServiceProvider ก็ได้
         //$question->answers->count()
         //foreach ($question->answers as $answer)
     }
@@ -62,7 +62,7 @@ class Question extends Model
     }
 
     public function isFavorited() {
-        return $this->favorites()->where('user_id',auth()->id())->count() > 0; 
+        return $this->favorites()->where('user_id',auth()->id())->count() > 0;
     }
 
     public function getIsFavoritedAttribute()
@@ -81,7 +81,7 @@ class Question extends Model
     }
 
     public function excerpt($length)
-    {   
+    {
         return str_limit( strip_tags($this->bodyHtml()),$length);
     }
 
@@ -89,5 +89,5 @@ class Question extends Model
     {
         return \Parsedown::instance()->text( $this->body );
     }
-   
+
 }

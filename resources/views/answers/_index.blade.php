@@ -1,4 +1,5 @@
-<div class="row mt-4">
+@if ($answersCount > 0 )
+    <div class="row mt-4">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -30,7 +31,7 @@
                                         @csrf
                                         <input type="hidden" name="vote" value="-1">
                                     </form>
-                                  
+                                
                                 </div>
                             <div class="media-body">
                                 {!! $answer->body_html !!}
@@ -67,4 +68,6 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
+@endif
+

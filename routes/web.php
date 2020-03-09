@@ -11,13 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'QuestionsController@index');
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'QuestionsController@index');
+// Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('questions','QuestionsController')->except('show');
 
@@ -27,7 +25,7 @@ Route::resource('questions.answers','AnswersController')->except(['index','creat
 
 Route::get('/questions/{slug}' , 'QuestionsController@show')->name('questions.show');  // name() เปลี่ยนจาก /questions  เป็น question.show
 
-Route::post('/answers/{answer}/accept','AcceptAnswerController')->name('answers.accept');  // ต้องสร้าง AcceptAnswerController ### php artisan make:controller AcceptAnswerController ## ก่อนทำการเขียน route 
+Route::post('/answers/{answer}/accept','AcceptAnswerController')->name('answers.accept');  // ต้องสร้าง AcceptAnswerController ### php artisan make:controller AcceptAnswerController ## ก่อนทำการเขียน route
 
 Route::post('/questions/{question}/favorites','FavoritesController@store')->name('questions.favorite');
 

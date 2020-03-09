@@ -1,4 +1,5 @@
-<div class="row mt-4">
+@auth
+    <div class="row mt-4">
         <div class="col-md-12">
             <div class="card">
                 <div class="card-body">
@@ -24,3 +25,16 @@
             </div>
         </div>
     </div>
+@endauth
+
+@guest
+<div class="row mt-4">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <p class="text text-danger text-center"> Please ... Login </p>
+            </div>
+        </div>
+    </div>
+</div>
+@endguest

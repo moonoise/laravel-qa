@@ -36,7 +36,7 @@ class User extends Authenticatable
     public function getUrlAttribute() {
         return "#";
     }
-    
+
     public function answers() {
         return $this->hasMany(Answer::class);
     }
@@ -53,8 +53,8 @@ class User extends Authenticatable
     }
 
 
-    /**            
-     *  สร้าง Eloquent ระหว่าง user กับ votable 
+    /**
+     *  สร้าง Eloquent ระหว่าง user กับ votable
      */
 
      public function voteQuestions()
@@ -72,20 +72,20 @@ class User extends Authenticatable
          $voteQuestions =  $this->voteQuestions();
 
          $this->_vote($voteQuestions,$question,$vote);
-      
+
      }
 
      public function voteAnswer(Answer $answer, $vote)
      {
         $voteAnswers =  $this->voteAnswers();
         $this->_vote($voteAnswers,$answer,$vote);
-       
+
      }
 
      private function _vote($relationship , $model ,$vote)
      {
         if ($relationship->where('votable_id',$model->id)->exists() ) {
-            $relationship->updateExistingPivot($model, ['vote' => $vote]); 
+            $relationship->updateExistingPivot($model, ['vote' => $vote]);
         }else{
             $relationship->attach($model,['vote' => $vote]);
         }

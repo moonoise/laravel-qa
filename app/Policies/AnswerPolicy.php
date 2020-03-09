@@ -9,7 +9,7 @@ use Illuminate\Auth\Access\HandlesAuthorization;
 class AnswerPolicy
 {
     use HandlesAuthorization;
-    
+
     /**
      * Determine whether the user can view any answers.
      *
