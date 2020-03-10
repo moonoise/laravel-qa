@@ -25,7 +25,7 @@
     .vote , .answer {
         width: 60px;
         height: 60px;
-       
+
     }
 
     .status {
@@ -86,8 +86,15 @@ form.form-delete {
         &.vote-accepted {
             color: $green;
         }
-        
+
     }
 
-    
+
+}
+
+.post {
+    padding: 20px 0 ;
+ &:not(:last-child){
+     border-bottom: 1px solid rgba($black,.1);
+ }
 }

@@ -26,11 +26,11 @@ class QuestionsController extends Controller
     public function index()
     {
         // \DB::enableQueryLog();
-        $questions = Question::with('user')->latest()->paginate(5); 
+        $questions = Question::with('user')->latest()->paginate(5);
         return view('questions.index',compact('questions'))->render() ;
 
         // dd(\DB::getQueryLog());
-        
+
     }
 
     /**
@@ -75,7 +75,7 @@ class QuestionsController extends Controller
      * @param  \App\Question  $question
      * @return \Illuminate\Http\Response
      */
-    public function edit(Question $question)  // ถ้าเรียกแบบแรก parameter เป็น $id 
+    public function edit(Question $question)  // ถ้าเรียกแบบแรก parameter เป็น $id
     {
         $this->authorize('update',$question);
         // $question = Question::findOrFail($id); // แบบแรก เรียกแบบนี้ก็ได้

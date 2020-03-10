@@ -25,7 +25,7 @@
                 <input type="hidden" name="vote" value="1">
             </form>
         <span class="votes-count">{{ $model->votes_count }}</span>
-        <a title="This {{ $name }} is not useful" 
+        <a title="This {{ $name }} is not useful"
         class="vote-down {{ Auth::guest() ? 'off' : '' }} "
         onclick="event.preventDefault(); document.getElementById('down-vote-{{ $formID }}').submit();">
                 <i class="fas fa-caret-down fa-2x"></i>
