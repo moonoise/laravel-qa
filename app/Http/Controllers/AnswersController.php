@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AnswersController extends Controller
 {
-   
+
 
     /**
      * Store a newly created resource in storage.
@@ -48,10 +48,18 @@ class AnswersController extends Controller
     public function update(Request $request, Question $question , Answer $answer)
     {
         $this->authorize('update',$answer);
-        
+
         $answer->update($request->validate([
             'body' => 'required'
         ]));
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Your answer has been updated.',
+                'body_html' => $answer->body_html
+            ]);
+        }
+
         return redirect()->route('questions.show',$question->slug)->with('success',"Your answer has been updated. ");
     }
 
@@ -68,5 +76,5 @@ class AnswersController extends Controller
 
         return back()->with('success',"Your answer has been removed .");
     }
-    
+
 }
