@@ -24,7 +24,10 @@
         "sass": "^1.26.3",
         "sass-loader": "^7.1.0",
         "vue": "^2.6.11",
+        "vue-izitoast": "^1.2.1",
         "vue-template-compiler": "^2.6.11"
     },
-    "dependencies": {}
+    "dependencies": {
+        "izitoast": "^1.4.0"
+    }
 }
