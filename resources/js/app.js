@@ -33,6 +33,8 @@ Vue.component('user-info', require('./components/UserInfo.vue').default);
 Vue.component('answer', require('./components/Answer.vue').default);
 Vue.component('favorite', require('./components/Fovorite.vue').default);
 
+Vue.component('Accept', require('./components/Accept.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
