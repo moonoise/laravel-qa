@@ -1,17 +1,15 @@
 <template>
     <div>
-            <a v-if="canAccept" title="mark this answer as best answer" u
-            :class="classes"
-            @click.prevent="create"  >
-                    <i class="fas fa-check fa-2x"></i>
-                </a>
-
-            <a v-if="accepted" title="The question owner accepted this answer as best answer"
-                :class="classes">
-                    <i class="fas fa-check fa-2x"></i>
+        <a v-if="canAccept" title="mark this answer as best answer" u
+        :class="classes"
+        @click.prevent="create"  >
+                <i class="fas fa-check fa-2x"></i>
             </a>
 
-
+        <a v-if="accepted" title="The question owner accepted this answer as best answer"
+            :class="classes">
+                <i class="fas fa-check fa-2x"></i>
+        </a>
     </div>
 </template>
 
@@ -43,7 +41,7 @@ export default {
 
     computed: {
         canAccept () {
-            return !this.authorize('accept',this.answer);
+            return  this.authorize('accept',this.answer);
         },
 
         accepted () {
