@@ -39,8 +39,8 @@
 
         methods: {
             toggle () {
-                if (!this.signedIn) {
-                    this.$toast.warning("Please login to favorite this question","Warning",{
+                if (! this.signedIn) {
+                    this.$toast.warning(`Please login to favorite this question`,"Warning",{
                         timeout:3000,
                         position:'bottomLeft'
                     });

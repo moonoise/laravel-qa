@@ -63,8 +63,9 @@ export default {
         },
 
         _vote (vote){
-            if(! this.singedIn) {
-                this.$toast.warning(`Please login to vite thie ${this.name} ` , "Warning", {
+            // console.log(this.signedIn)
+            if(! this.signedIn) {
+                this.$toast.warning(`Please login to vote the ${this.name} ` , "Warning", {
                     timeout:3000,
                     position: 'bottomLeft'
                 });
