@@ -17,11 +17,14 @@
                 </div>
             </div>
         </div>
+
+        <new-answer @created="add" :question-id="question.id"></new-answer>
     </div>
 </template>
 
 <script>
 import Answer from './Answer.vue';
+import NewAnswer from './NewAnswer.vue'
 
 export default {
 
@@ -41,6 +44,11 @@ export default {
     },
 
     methods: {
+        add( answer ) {
+            this.answers.push(answer);
+            this.count++
+        },
+
         remove (index) {
             this.answers.splice(index,1);
             this.count--;
@@ -65,7 +73,7 @@ export default {
         }
     },
 
-    components : {Answer}
+    components : {Answer,NewAnswer}
 }
 </script>
 
